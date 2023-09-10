@@ -15,5 +15,4 @@ class APIResponse<T> {
   String toString() {
     return "Status: $status \n Data: $data \n Message: $message";
   }
-
 }

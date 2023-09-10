@@ -24,8 +24,8 @@ class NetworkAPIServices extends BaseAPIServices {
   Future getPOSTResponse(String url, dynamic data) async {
     dynamic responseJSON;
     try {
-      final response =
-          await http.post(Uri.parse(url), body:  data)
+      final response = await http
+          .post(Uri.parse(url), body: data)
           .timeout(const Duration(seconds: 10));
       responseJSON = returnResponse(response);
     } on SocketException {
