@@ -8,11 +8,11 @@ class CustomToast
       final overlay = Overlay.of(context);
       final overlayEntry = OverlayEntry(
       builder: (context) => Padding(
-        padding: EdgeInsets.only(bottom: 30),
+        padding:const EdgeInsets.only(bottom: 30),
         child: Align(
           alignment: Alignment.bottomCenter,
           child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            padding:const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
               border: Border.all(color: Colors.grey.shade900, width: 1)
@@ -20,11 +20,13 @@ class CustomToast
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Icon(Icons.notifications_on_rounded, color: Colors.blue,),
-                SizedBox(width: 8),
-                Text(
-                  message,
-                  style: TextStyle(color: Colors.black, fontSize: 11, decoration: TextDecoration.none),
+                const Flexible(child: Icon(Icons.notifications_on_rounded, color: Colors.blue,)),
+                const SizedBox(width: 8),
+                Flexible(
+                  child: Text(
+                    message,
+                    style: TextStyle(color: Colors.black, fontSize: 11, decoration: TextDecoration.none),
+                  ),
                 ),
               ],
             ),
@@ -33,7 +35,7 @@ class CustomToast
       ),
     );
     overlay.insert(overlayEntry);
-    Future.delayed(Duration(seconds: 2), () {
+    Future.delayed(const Duration(seconds: 2), () {
       overlayEntry.remove();
     });
   }

@@ -23,7 +23,7 @@ class AppRoundedButton extends StatelessWidget {
             color: AppColor.greenColor,
             borderRadius: BorderRadius.circular(20),
           ),
-          child: Center(child: loading? CircularProgressIndicator(color: Colors.white,) : Text(title)),
+          child: Center(child: loading? const CircularProgressIndicator(color: Colors.white,) : Text(title)),
 
       ),
     );

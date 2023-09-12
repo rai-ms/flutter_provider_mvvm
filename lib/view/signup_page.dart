@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_provider_mvvm/res/components/rounded_button.dart';
-import 'package:flutter_provider_mvvm/utils/custom_toast.dart';
-import 'package:flutter_provider_mvvm/utils/routes/route_name.dart';
-import 'package:flutter_provider_mvvm/utils/utils.dart';
-import 'package:flutter_provider_mvvm/view_model/auth_view_model.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_provider_mvvm/res/app_colors.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+import '../res/components/rounded_button.dart';
+import '../utils/custom_toast.dart';
+import '../utils/routes/route_name.dart';
+import '../utils/utils.dart';
+import '../view_model/auth_view_model.dart';
+
+class SignupPage extends StatefulWidget {
+  const SignupPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<SignupPage> createState() => _SignupPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _SignupPageState extends State<SignupPage> {
   final _emailController = TextEditingController();
   final _passController = TextEditingController();
 
@@ -81,15 +81,14 @@ class _LoginPageState extends State<LoginPage> {
                           onPressed: () {
                             passNotifier.value = !passNotifier.value;
                           },
-                        ) 
-                      ),
+                        )
+                    ),
                   );
                 }),
             const SizedBox(
               height: 30,
             ),
             AppRoundedButton(onTap: (){
-
               if(!Utils.isValidEmail(_emailController.text.toString().trim()))
               {
                 CustomToast(context: context, message: "Not a valid Email");
@@ -108,19 +107,19 @@ class _LoginPageState extends State<LoginPage> {
                   "email": email,
                   "password": pass
                 };
-                _authViewModel.loginAPI(data, context);
+                _authViewModel.signupAPI(data, context);
               }
-            }, title: "Login", loading: _authViewModel.isLoading,),
+            }, title: "SignUp", loading: _authViewModel.isLoading,),
             const SizedBox(
               height: 30,
             ),
 
             // Goto Signup Page
             InkWell(
-              onTap: (){
-                Navigator.pushNamed(context, RouteName.signupPage);
-              },
-              child:const Text("Don't have an account? Sign Up", ))
+                onTap: (){
+                  Navigator.pop(context);
+                },
+                child:const Text("Already have an account? LogIn", ))
           ],
         ),
       ),

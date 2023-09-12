@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_provider_mvvm/utils/routes/navigate_route.dart';
 import 'package:flutter_provider_mvvm/utils/routes/route_name.dart';
-import 'package:flutter_provider_mvvm/view/homepage.dart';
 import 'package:flutter_provider_mvvm/view_model/auth_view_model.dart';
 import 'package:provider/provider.dart';
 
@@ -15,6 +14,9 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    // return MaterialApp(
+    //   home: MyView(),
+    // );
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
