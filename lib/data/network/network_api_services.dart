@@ -40,11 +40,11 @@ class NetworkAPIServices extends BaseAPIServices {
       case 200:
         return jsonDecode(response.body);
       case 400:
-        throw BadRequestException(response.body.toString());
+        throw BadRequestException( "BadRequestException 400");
       case 500:
-        throw BadRequestException(response.body.toString());
+        throw BadRequestException( "BadRequestException 500");
       case 404:
-        throw UnauthorisedException(response.body.toString());
+        throw UnauthorisedException( "404 ");
       default:
         throw InvalidInputException(
             "Error occur while communicating with server ${response.body}");
