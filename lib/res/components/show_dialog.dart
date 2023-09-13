@@ -26,7 +26,7 @@ class ShowMyAppDialog
                   ],
                 ),
                 Text("Name: $firstName $lastName"),
-                Text(email),
+                Text("Email: $email"),
               ],
             ),
           ),

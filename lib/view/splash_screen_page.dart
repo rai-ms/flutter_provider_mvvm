@@ -23,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Text("SplashScreen", style:  Theme.of(context).textTheme.headlineMedium,),
+        child: Center(child: Text("SplashScreen", style:  Theme.of(context).textTheme.headlineMedium,)),
       ),
     );
   }

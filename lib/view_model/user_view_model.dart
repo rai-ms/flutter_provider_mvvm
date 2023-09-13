@@ -4,7 +4,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class UserViewModel extends ChangeNotifier
 {
-
   Future<bool> saveUser(UserModel user) async {
     final SharedPreferences preferences = await SharedPreferences.getInstance();
     preferences.setString('token', user.token.toString());
@@ -23,6 +22,7 @@ class UserViewModel extends ChangeNotifier
   void remove() async
   {
     final SharedPreferences preferences = await SharedPreferences.getInstance();
+    preferences.remove('token');
     preferences.clear();
   }
 

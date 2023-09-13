@@ -47,9 +47,7 @@ class _HomePageState extends State<HomePage> {
                 builder: (context, value, child) {
                   return FutureBuilder<List<Datum>>(future: HomePageService().getUser(), builder: (context, snapshot){
                     if(!snapshot.hasData || snapshot.connectionState == ConnectionState.waiting || snapshot.hasError){
-                      return const SizedBox(
-                          height: 100,
-                          width: 100,
+                      return const Center(
                           child: CircularProgressIndicator());
                     }
                     else if (snapshot.hasData){
@@ -58,10 +56,10 @@ class _HomePageState extends State<HomePage> {
                           itemBuilder: (context, index){
                             return ListTile(
                               onTap: (){
-                                ShowMyAppDialog().showAppDialog(context, user[index].avatar, user[index].firstName, user[index].lastName, user[index].email);
+                                ShowMyAppDialog().showAppDialog(context, snapshot.data![index].avatar ?? "", snapshot.data![index].firstName ?? "", snapshot.data![index].lastName ?? "", snapshot.data![index].email ?? "");
                               },
-                              title: Text(user[index].firstName),
-                              leading: CircleAvatar(backgroundImage: NetworkImage(user[index].avatar),),
+                              title: Text(snapshot.data![index].firstName ?? ""),
+                              leading: CircleAvatar(backgroundImage: NetworkImage(snapshot.data![index].avatar ?? ""),),
                             );
                       });
                     }

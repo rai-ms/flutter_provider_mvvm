@@ -14,11 +14,11 @@ class SplashServices
       {
         if(value.token == null || value.token == ''){
           await Future.delayed(const Duration(seconds: 3));
-          Navigator.pushReplacementNamed(context, RouteName.homePage);
+          Navigator.pushNamedAndRemoveUntil(context, RouteName.loginPage, (route)=> route.isFirst);
         }
         else {
           await Future.delayed(const Duration(seconds: 3));
-          Navigator.pushReplacementNamed(context, RouteName.loginPage);
+          Navigator.pushNamedAndRemoveUntil(context, RouteName.homePage, (route)=> route.isFirst);
         }
       }
     )
