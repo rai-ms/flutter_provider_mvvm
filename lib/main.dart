@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_provider_mvvm/utils/routes/navigate_route.dart';
 import 'package:flutter_provider_mvvm/utils/routes/route_name.dart';
 import 'package:flutter_provider_mvvm/view_model/auth_view_model.dart';
+import 'package:flutter_provider_mvvm/view_model/temperature_view_model.dart';
+import 'package:flutter_provider_mvvm/view_model/user_view_model.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -22,6 +24,12 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (_)=>AuthViewModel(),
         ),
+        ChangeNotifierProvider(
+          create: (_)=>UserViewModel(),
+        ),
+        ChangeNotifierProvider(
+          create: (_)=>TemperatureViewModel(),
+        ),
       ],
       child: MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -30,7 +38,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      initialRoute: RouteName.homePage,
+      initialRoute: RouteName.splashScreenPage,
       onGenerateRoute: NavigateRoute.onGenerate,
     ),);
   }

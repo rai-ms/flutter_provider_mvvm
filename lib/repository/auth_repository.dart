@@ -13,7 +13,7 @@ class AuthRepository
       res = _baseAPIServices.getPOSTResponse(AppUrl.loginEndPoint, data);
     }
     catch(e){
-      throw e;
+      rethrow;
     }
     return res;
   }
@@ -24,6 +24,15 @@ class AuthRepository
     try{
       res =  _baseAPIServices.getPOSTResponse(AppUrl.registerEndPoint, data);
     }
-    catch (e){ throw e;}
+    catch (e){ rethrow;}
+  }
+
+  Future<dynamic> userDataGetAPI() async {
+    dynamic res;
+    try{
+      res = _baseAPIServices.getGETResponse(AppUrl.getUserEndPoint);
+      return res;
+    }
+    catch (e){rethrow;}
   }
 }
