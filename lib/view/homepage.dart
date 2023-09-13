@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_provider_mvvm/res/app_colors.dart';
 import 'package:flutter_provider_mvvm/res/components/show_dialog.dart';
 import 'package:flutter_provider_mvvm/utils/routes/route_name.dart';
 import 'package:flutter_provider_mvvm/view/services/homepage_services.dart';
@@ -24,8 +23,8 @@ class _HomePageState extends State<HomePage> {
     super.initState();
   }
 
-  void loadData()async {
-    user = await TemperatureViewModel().getUser();
+  void loadData() async {
+    user = await HomePageService().getUser();
   }
   // eve.holt@reqres.in
 
@@ -46,10 +45,12 @@ class _HomePageState extends State<HomePage> {
             Expanded(
               child: Consumer<TemperatureViewModel>(
                 builder: (context, value, child) {
-                  return FutureBuilder<List<Datum>>(future: HomePageService().getUsers(), builder: (context, snapshot){
-                    user = snapshot.data!;
+                  return FutureBuilder<List<Datum>>(future: HomePageService().getUser(), builder: (context, snapshot){
                     if(!snapshot.hasData || snapshot.connectionState == ConnectionState.waiting || snapshot.hasError){
-                      return const Flexible(child: CircularProgressIndicator());
+                      return const SizedBox(
+                          height: 100,
+                          width: 100,
+                          child: CircularProgressIndicator());
                     }
                     else if (snapshot.hasData){
                       return ListView.builder(
