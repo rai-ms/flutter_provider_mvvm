@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_provider_mvvm/utils/custom_toast.dart';
 import 'package:flutter_provider_mvvm/utils/routes/route_name.dart';
 import 'package:flutter_provider_mvvm/view_model/user_view_model.dart';
 
@@ -12,13 +13,18 @@ class SplashServices
   {
     getDataUserModel().then((value) async
       {
-        if(value.token == null || value.token == ''){
+        String isNullToken = value.token.toString();
+        if(isNullToken == 'null'){
           await Future.delayed(const Duration(seconds: 3));
-          Navigator.pushNamedAndRemoveUntil(context, RouteName.loginPage, (route)=> route.isFirst);
+          // eve.holt@reqres.in
+          CustomToast(message: value.token.toString(), context: context);
+          Navigator.pushNamedAndRemoveUntil(context, RouteName.loginPage, (route)=>false);
         }
-        else {
+        else
+        {
           await Future.delayed(const Duration(seconds: 3));
-          Navigator.pushNamedAndRemoveUntil(context, RouteName.homePage, (route)=> route.isFirst);
+          CustomToast(message: "${value.token.toString()}", context: context);
+          Navigator.pushNamedAndRemoveUntil(context, RouteName.homePage, (route)=> false);
         }
       }
     )
@@ -28,4 +34,16 @@ class SplashServices
       }
     );
   }
+
+  getToken(BuildContext context){
+    getDataUserModel().then((value) async
+    {
+      if(value.token == null || value.token == ''){
+        await Future.delayed(const Duration(seconds: 3));
+        CustomToast(message: "${value.token.toString()}", context: context);}
+      else { await Future.delayed(const Duration(seconds: 3));
+      CustomToast(message: "${value.token.toString()}", context: context); }})
+    .onError((error, stackTrace){});
+  }
+
 }
